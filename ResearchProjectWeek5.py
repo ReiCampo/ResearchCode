@@ -71,7 +71,7 @@ for i, x in enumerate(BAL_Indicator):
         null_list = np.concatenate([null_list, [failure]])
     else:
         success = i
-        data_list = np.concatenate([data_list, [success]])
+        success_list = np.concatenate([success_list, [success]])
 
 
 for i, x in enumerate(SN_Ratio):
@@ -81,7 +81,7 @@ for i, x in enumerate(SN_Ratio):
         data_list = np.concatenate([data_list, [success]])
     else:
         failure = i
-        null_list = np.concatenate([null_list, [failure]])
+        success_list = np.concatenate([success_list, [failure]])
 
 
 for i, x in enumerate(plate_quality):
@@ -91,7 +91,7 @@ for i, x in enumerate(plate_quality):
         data_list = np.concatenate([data_list, [success]])
     else:
         failure = i
-        null_list = np.concatenate([null_list, [failure]])
+        success_list = np.concatenate([success_list, [failure]])
 
 
 for i, x in enumerate(redshift):
@@ -101,7 +101,7 @@ for i, x in enumerate(redshift):
         data_list = np.concatenate([data_list, [success]])
     else:
         failure = i
-        null_list = np.concatenate([null_list, [failure]])
+        success_list = np.concatenate([success_list, [failure]])
         
 
 for x in success_list:
@@ -117,12 +117,13 @@ for x in success_list:
 #when graphing the data.
         
 for i in data_list:
-    flux = np.log10(1e17 * specdatalist[1].data['flux']) #look at the individual quasar not the actual specdatalist
+    flux = np.log10(1e17 * data_list[1].data['flux'][i]) #look at the individual quasar not the actual specdatalist
     rest_frame_Z = 10**wavelength / (1+i)
     
     plt.plot(rest_frame_Z, flux, 'g')
     plt.ylabel('log(flux [erg/s/cm^2/Angstrom])')
     plt.xlabel('Wavelength [Angstrom]')
+    plt.show()
     
 #here, I created a for loop for graphing each redshift in the data_list
 #array. I adjusted the redshift to the rest frame and then it takes the rest
