@@ -35,72 +35,72 @@ dec_list = np.array([])
 ra_list = np.array([])
 
 
-for x in enumerate(specdatalist):
+for x, y in enumerate(specdatalist):
     RAdiff = abs(Plate_RA[x] - RA[x])
     ra_list = np.concatenate([ra_list, [RAdiff]])
     
    
-for x in enumerate(specdatalist):
+for x, y in enumerate(specdatalist):
     DECdiff = abs(Plate_Dec[x] - Dec[x])
     dec_list = np.concatenate([dec_list, [DECdiff]])
 
   
 for i, x in enumerate(dec_list):
-    condition = i
+    condition = x
     if x > 1:
-        failure = condition
+        failure = i
         null_list = np.concatenate([null_list , [failure]])
     else:
-        success = condition
+        success = i
         success_list = np.concatenate([success_list, [success]])
         
 for i, x in enumerate(ra_list):
-    condition = i
+    condition = x
     if x > 1:
-        failure = condition
+        failure = i
         null_list = np.concatenate([null_list, [failure]])
     else:
-        success = condition
+        success = i
         success_list = np.concatenate([success_list, [success]])
 
 
 for i, x in enumerate(BAL_Indicator):
-    condition = i
+    condition = x
     if x > 0:
-        failure = condition
+        failure = i
         null_list = np.concatenate([null_list, [failure]])
     else:
-        success = condition
+        success = i
         data_list = np.concatenate([data_list, [success]])
 
 
 for i, x in enumerate(SN_Ratio):
-    condition = i
+    condition = x
     if x >= 2:
-        success = condition
+        success = i
         data_list = np.concatenate([data_list, [success]])
     else:
-        failure = condition
+        failure = i
         null_list = np.concatenate([null_list, [failure]])
 
 
 for i, x in enumerate(plate_quality):
-    condition = i
+    condition = x
     if x == 'good':
-        success = condition
+        success = i
         data_list = np.concatenate([data_list, [success]])
     else:
-        failure = condition
+        failure = i
         null_list = np.concatenate([null_list, [failure]])
 
 
 for i, x in enumerate(redshift):
-    condition = i
+    condition = x
     if x > 1.7 and x < 2.6:
-        success = condition
+        success = i
         data_list = np.concatenate([data_list, [success]])
     else:
-        failure = condition
+        failure = i
         null_list = np.concatenate([null_list, [failure]])
         
 
